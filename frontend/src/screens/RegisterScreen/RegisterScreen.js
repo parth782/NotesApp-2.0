@@ -42,6 +42,7 @@ const RegisterScreen = () => {
         setName("");
         setPass("");
         setConfirmPass("");
+        setPic("");
         setLoading(false);
         navigate('/');
         alert('Successfully registered');
