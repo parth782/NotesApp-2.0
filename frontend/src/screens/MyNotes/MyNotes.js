@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Accordion, Badge, Button, Card, useAccordionButton } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import MainScreen from '../../components/MainScreen'
+import { Accordion, Badge, Button, Card, useAccordionButton } from 'react-bootstrap';
+import { Link,Navigate } from 'react-router-dom';
+
+import MainScreen from '../../components/MainScreen';
 import axios from 'axios';
 
 const MyNotes = () => {
+ 
   const user = JSON.parse(localStorage.getItem("userInfo"));
+ 
+
   const [data, setData] = useState([]);
   const deleteHandle = async (id) => {
     if (window.confirm("Are you sure?")) {
@@ -47,9 +51,17 @@ const MyNotes = () => {
       </button>
     );
   }
+ 
   useEffect(() => {
+    if(user){
     getNotes();
-  });
+    }
+  }, []);
+  if(!user){
+    return (<Navigate to="/login" />);
+  }
+  else{
+ 
   return (
     <MainScreen title={`Welcome back ${user.name}...`}>
       <Link to="/createnote">
@@ -126,6 +138,7 @@ const MyNotes = () => {
       }
     </MainScreen>
   );
+    }
 }
 
 export default MyNotes

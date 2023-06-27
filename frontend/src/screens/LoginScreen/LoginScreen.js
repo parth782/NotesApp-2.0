@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,Navigate } from 'react-router-dom';
 import MainScreen from '..//../components/MainScreen';
 import './LoginScreen.css';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
 
 const LoginScreen = () => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
@@ -39,6 +40,10 @@ const LoginScreen = () => {
             setLoading(false);
         }
     }
+    if(user){
+        return (<Navigate to="/mynotes" />);
+    }
+    else{
 
     return (
         <>
@@ -82,6 +87,7 @@ const LoginScreen = () => {
             </MainScreen>
         </>
     );
+    }
 }
 
 export default LoginScreen
