@@ -9,7 +9,7 @@ const getNotes = asyncHandler(async (req, res) => {
 });
 
 const createNote = asyncHandler(async (req, res) => {
-    const { title, category, content, user } = req.body;
+    const { title, category, content } = req.body;
     if (!title || !content || !category) {
       res.status(400);
       throw new Error("Please Fill all the feilds");
